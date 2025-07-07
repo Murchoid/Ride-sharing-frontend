@@ -10,7 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as UserDashboardRouteImport } from './routes/user/dashboard'
+import { Route as DriverDashboardRouteImport } from './routes/driver/dashboard'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo.tanstack-query'
+import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
 import { Route as AuthUserSigninRouteImport } from './routes/auth/user/signin'
 import { Route as AuthDriverRegisterRouteImport } from './routes/auth/driver/register'
 import { Route as AuthAdminLoginRouteImport } from './routes/auth/admin/login'
@@ -20,9 +23,24 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UserDashboardRoute = UserDashboardRouteImport.update({
+  id: '/user/dashboard',
+  path: '/user/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DriverDashboardRoute = DriverDashboardRouteImport.update({
+  id: '/driver/dashboard',
+  path: '/driver/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
   id: '/demo/tanstack-query',
   path: '/demo/tanstack-query',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthUserSigninRoute = AuthUserSigninRouteImport.update({
@@ -43,14 +61,20 @@ const AuthAdminLoginRoute = AuthAdminLoginRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/driver/dashboard': typeof DriverDashboardRoute
+  '/user/dashboard': typeof UserDashboardRoute
   '/auth/admin/login': typeof AuthAdminLoginRoute
   '/auth/driver/register': typeof AuthDriverRegisterRoute
   '/auth/user/signin': typeof AuthUserSigninRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/driver/dashboard': typeof DriverDashboardRoute
+  '/user/dashboard': typeof UserDashboardRoute
   '/auth/admin/login': typeof AuthAdminLoginRoute
   '/auth/driver/register': typeof AuthDriverRegisterRoute
   '/auth/user/signin': typeof AuthUserSigninRoute
@@ -58,7 +82,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
+  '/driver/dashboard': typeof DriverDashboardRoute
+  '/user/dashboard': typeof UserDashboardRoute
   '/auth/admin/login': typeof AuthAdminLoginRoute
   '/auth/driver/register': typeof AuthDriverRegisterRoute
   '/auth/user/signin': typeof AuthUserSigninRoute
@@ -67,21 +94,30 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin/dashboard'
     | '/demo/tanstack-query'
+    | '/driver/dashboard'
+    | '/user/dashboard'
     | '/auth/admin/login'
     | '/auth/driver/register'
     | '/auth/user/signin'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/admin/dashboard'
     | '/demo/tanstack-query'
+    | '/driver/dashboard'
+    | '/user/dashboard'
     | '/auth/admin/login'
     | '/auth/driver/register'
     | '/auth/user/signin'
   id:
     | '__root__'
     | '/'
+    | '/admin/dashboard'
     | '/demo/tanstack-query'
+    | '/driver/dashboard'
+    | '/user/dashboard'
     | '/auth/admin/login'
     | '/auth/driver/register'
     | '/auth/user/signin'
@@ -89,7 +125,10 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
+  DriverDashboardRoute: typeof DriverDashboardRoute
+  UserDashboardRoute: typeof UserDashboardRoute
   AuthAdminLoginRoute: typeof AuthAdminLoginRoute
   AuthDriverRegisterRoute: typeof AuthDriverRegisterRoute
   AuthUserSigninRoute: typeof AuthUserSigninRoute
@@ -104,11 +143,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/user/dashboard': {
+      id: '/user/dashboard'
+      path: '/user/dashboard'
+      fullPath: '/user/dashboard'
+      preLoaderRoute: typeof UserDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/driver/dashboard': {
+      id: '/driver/dashboard'
+      path: '/driver/dashboard'
+      fullPath: '/driver/dashboard'
+      preLoaderRoute: typeof DriverDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/demo/tanstack-query': {
       id: '/demo/tanstack-query'
       path: '/demo/tanstack-query'
       fullPath: '/demo/tanstack-query'
       preLoaderRoute: typeof DemoTanstackQueryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/user/signin': {
@@ -137,7 +197,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
+  DriverDashboardRoute: DriverDashboardRoute,
+  UserDashboardRoute: UserDashboardRoute,
   AuthAdminLoginRoute: AuthAdminLoginRoute,
   AuthDriverRegisterRoute: AuthDriverRegisterRoute,
   AuthUserSigninRoute: AuthUserSigninRoute,

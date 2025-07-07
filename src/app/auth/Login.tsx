@@ -1,6 +1,6 @@
 import AuthLog from "@/components/auths/logIn";
 import AuthReg from "@/components/auths/register";
-import { FadeInSection } from "@/components/FadeInSection";
+import { FadeInSection } from "@/components/shared/FadeInSection";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";

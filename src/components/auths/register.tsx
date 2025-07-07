@@ -4,10 +4,12 @@ import validateField, { registerSchema, type RegisterSchema } from "@/lib/valida
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
 
 export default function AuthReg() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const navigate = useNavigate();
 
  const registerSchemaWithPasswordMatch = registerSchema.refine(
   (data) => data.password === data.confirmPassword,
@@ -36,6 +38,7 @@ const form = useForm({
     console.log("Registering with", value);
     // call your API here
 
+    navigate({to:'/auth/user/signin'});
     form.reset();
   },
 });

@@ -5,9 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Eye,EyeOff, Lock, Mail } from "lucide-react";
 import { useState } from "react";
+import { useLogin } from "@/hooks/useLogin";
 
 export default function AuthLog() {
   const [showPassword, setShowPassword] = useState(false);
+  const logIn = useLogin();
 
   const form = useForm({
     defaultValues: {
@@ -20,8 +22,7 @@ export default function AuthLog() {
                 console.error('Validation failed:', result.error.issues)
                 return
           }
-      console.log("Logging in with", value);
-      // call your API here
+      logIn.mutate(value);
       form.reset();
     },
   }) ;
@@ -108,8 +109,11 @@ export default function AuthLog() {
         </a>
       </div>
 
-      <Button type="submit" className="w-full h-12 bg-green-600 hover:bg-green-700 text-white rounded-xl">
-        Login
+      <Button type="submit"
+        className="w-full h-12 bg-green-600 hover:bg-green-700 text-white rounded-xl"
+        disabled= {logIn.isPending}
+      >
+        { logIn.isPending ?  "Loging in..." : "Log in"}
       </Button>
     </form>
   );

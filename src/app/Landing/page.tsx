@@ -6,7 +6,7 @@ import {
   ShieldCheckIcon,
   BarChart3Icon,
 } from "lucide-react";
-import { FadeInSection } from "../../components/FadeInSection";
+import { FadeInSection } from "../../components/shared/FadeInSection";
 
 
 export default function LandingPage() {

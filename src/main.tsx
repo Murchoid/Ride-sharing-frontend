@@ -9,6 +9,9 @@ import { routeTree } from './routeTree.gen'
 
 import './styles.css'
 import reportWebVitals from './reportWebVitals.ts'
+import { queryClient } from './lib/queryClient.ts'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { Toaster } from "@/components/ui/sonner"; 
 
 // Create a new router instance
 const router = createRouter({
@@ -36,7 +39,11 @@ if (rootElement && !rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <TanStackQueryProvider.Provider>
-        <RouterProvider router={router} />
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+          <Toaster/>
+        </QueryClientProvider>
+        
       </TanStackQueryProvider.Provider>
     </StrictMode>,
   )
