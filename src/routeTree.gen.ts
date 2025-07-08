@@ -9,28 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RideioRouteImport } from './routes/rideio'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as UserDashboardRouteImport } from './routes/user/dashboard'
-import { Route as DriverDashboardRouteImport } from './routes/driver/dashboard'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo.tanstack-query'
-import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
+import { Route as RideioUserDashboardRouteImport } from './routes/rideio/user/dashboard'
+import { Route as RideioDriverDashboardRouteImport } from './routes/rideio/driver/dashboard'
+import { Route as RideioAdminDashboardRouteImport } from './routes/rideio/admin/dashboard'
 import { Route as AuthUserSigninRouteImport } from './routes/auth/user/signin'
 import { Route as AuthDriverRegisterRouteImport } from './routes/auth/driver/register'
 import { Route as AuthAdminLoginRouteImport } from './routes/auth/admin/login'
 
+const RideioRoute = RideioRouteImport.update({
+  id: '/rideio',
+  path: '/rideio',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const UserDashboardRoute = UserDashboardRouteImport.update({
-  id: '/user/dashboard',
-  path: '/user/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DriverDashboardRoute = DriverDashboardRouteImport.update({
-  id: '/driver/dashboard',
-  path: '/driver/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
@@ -38,10 +34,20 @@ const DemoTanstackQueryRoute = DemoTanstackQueryRouteImport.update({
   path: '/demo/tanstack-query',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminDashboardRoute = AdminDashboardRouteImport.update({
+const RideioUserDashboardRoute = RideioUserDashboardRouteImport.update({
+  id: '/user/dashboard',
+  path: '/user/dashboard',
+  getParentRoute: () => RideioRoute,
+} as any)
+const RideioDriverDashboardRoute = RideioDriverDashboardRouteImport.update({
+  id: '/driver/dashboard',
+  path: '/driver/dashboard',
+  getParentRoute: () => RideioRoute,
+} as any)
+const RideioAdminDashboardRoute = RideioAdminDashboardRouteImport.update({
   id: '/admin/dashboard',
   path: '/admin/dashboard',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => RideioRoute,
 } as any)
 const AuthUserSigninRoute = AuthUserSigninRouteImport.update({
   id: '/auth/user/signin',
@@ -61,74 +67,78 @@ const AuthAdminLoginRoute = AuthAdminLoginRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
+  '/rideio': typeof RideioRouteWithChildren
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/driver/dashboard': typeof DriverDashboardRoute
-  '/user/dashboard': typeof UserDashboardRoute
   '/auth/admin/login': typeof AuthAdminLoginRoute
   '/auth/driver/register': typeof AuthDriverRegisterRoute
   '/auth/user/signin': typeof AuthUserSigninRoute
+  '/rideio/admin/dashboard': typeof RideioAdminDashboardRoute
+  '/rideio/driver/dashboard': typeof RideioDriverDashboardRoute
+  '/rideio/user/dashboard': typeof RideioUserDashboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
+  '/rideio': typeof RideioRouteWithChildren
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/driver/dashboard': typeof DriverDashboardRoute
-  '/user/dashboard': typeof UserDashboardRoute
   '/auth/admin/login': typeof AuthAdminLoginRoute
   '/auth/driver/register': typeof AuthDriverRegisterRoute
   '/auth/user/signin': typeof AuthUserSigninRoute
+  '/rideio/admin/dashboard': typeof RideioAdminDashboardRoute
+  '/rideio/driver/dashboard': typeof RideioDriverDashboardRoute
+  '/rideio/user/dashboard': typeof RideioUserDashboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/admin/dashboard': typeof AdminDashboardRoute
+  '/rideio': typeof RideioRouteWithChildren
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
-  '/driver/dashboard': typeof DriverDashboardRoute
-  '/user/dashboard': typeof UserDashboardRoute
   '/auth/admin/login': typeof AuthAdminLoginRoute
   '/auth/driver/register': typeof AuthDriverRegisterRoute
   '/auth/user/signin': typeof AuthUserSigninRoute
+  '/rideio/admin/dashboard': typeof RideioAdminDashboardRoute
+  '/rideio/driver/dashboard': typeof RideioDriverDashboardRoute
+  '/rideio/user/dashboard': typeof RideioUserDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/admin/dashboard'
+    | '/rideio'
     | '/demo/tanstack-query'
-    | '/driver/dashboard'
-    | '/user/dashboard'
     | '/auth/admin/login'
     | '/auth/driver/register'
     | '/auth/user/signin'
+    | '/rideio/admin/dashboard'
+    | '/rideio/driver/dashboard'
+    | '/rideio/user/dashboard'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/admin/dashboard'
+    | '/rideio'
     | '/demo/tanstack-query'
-    | '/driver/dashboard'
-    | '/user/dashboard'
     | '/auth/admin/login'
     | '/auth/driver/register'
     | '/auth/user/signin'
+    | '/rideio/admin/dashboard'
+    | '/rideio/driver/dashboard'
+    | '/rideio/user/dashboard'
   id:
     | '__root__'
     | '/'
-    | '/admin/dashboard'
+    | '/rideio'
     | '/demo/tanstack-query'
-    | '/driver/dashboard'
-    | '/user/dashboard'
     | '/auth/admin/login'
     | '/auth/driver/register'
     | '/auth/user/signin'
+    | '/rideio/admin/dashboard'
+    | '/rideio/driver/dashboard'
+    | '/rideio/user/dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AdminDashboardRoute: typeof AdminDashboardRoute
+  RideioRoute: typeof RideioRouteWithChildren
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
-  DriverDashboardRoute: typeof DriverDashboardRoute
-  UserDashboardRoute: typeof UserDashboardRoute
   AuthAdminLoginRoute: typeof AuthAdminLoginRoute
   AuthDriverRegisterRoute: typeof AuthDriverRegisterRoute
   AuthUserSigninRoute: typeof AuthUserSigninRoute
@@ -136,25 +146,18 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/rideio': {
+      id: '/rideio'
+      path: '/rideio'
+      fullPath: '/rideio'
+      preLoaderRoute: typeof RideioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/user/dashboard': {
-      id: '/user/dashboard'
-      path: '/user/dashboard'
-      fullPath: '/user/dashboard'
-      preLoaderRoute: typeof UserDashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/driver/dashboard': {
-      id: '/driver/dashboard'
-      path: '/driver/dashboard'
-      fullPath: '/driver/dashboard'
-      preLoaderRoute: typeof DriverDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/tanstack-query': {
@@ -164,12 +167,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DemoTanstackQueryRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/dashboard': {
-      id: '/admin/dashboard'
+    '/rideio/user/dashboard': {
+      id: '/rideio/user/dashboard'
+      path: '/user/dashboard'
+      fullPath: '/rideio/user/dashboard'
+      preLoaderRoute: typeof RideioUserDashboardRouteImport
+      parentRoute: typeof RideioRoute
+    }
+    '/rideio/driver/dashboard': {
+      id: '/rideio/driver/dashboard'
+      path: '/driver/dashboard'
+      fullPath: '/rideio/driver/dashboard'
+      preLoaderRoute: typeof RideioDriverDashboardRouteImport
+      parentRoute: typeof RideioRoute
+    }
+    '/rideio/admin/dashboard': {
+      id: '/rideio/admin/dashboard'
       path: '/admin/dashboard'
-      fullPath: '/admin/dashboard'
-      preLoaderRoute: typeof AdminDashboardRouteImport
-      parentRoute: typeof rootRouteImport
+      fullPath: '/rideio/admin/dashboard'
+      preLoaderRoute: typeof RideioAdminDashboardRouteImport
+      parentRoute: typeof RideioRoute
     }
     '/auth/user/signin': {
       id: '/auth/user/signin'
@@ -195,12 +212,25 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface RideioRouteChildren {
+  RideioAdminDashboardRoute: typeof RideioAdminDashboardRoute
+  RideioDriverDashboardRoute: typeof RideioDriverDashboardRoute
+  RideioUserDashboardRoute: typeof RideioUserDashboardRoute
+}
+
+const RideioRouteChildren: RideioRouteChildren = {
+  RideioAdminDashboardRoute: RideioAdminDashboardRoute,
+  RideioDriverDashboardRoute: RideioDriverDashboardRoute,
+  RideioUserDashboardRoute: RideioUserDashboardRoute,
+}
+
+const RideioRouteWithChildren =
+  RideioRoute._addFileChildren(RideioRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AdminDashboardRoute: AdminDashboardRoute,
+  RideioRoute: RideioRouteWithChildren,
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
-  DriverDashboardRoute: DriverDashboardRoute,
-  UserDashboardRoute: UserDashboardRoute,
   AuthAdminLoginRoute: AuthAdminLoginRoute,
   AuthDriverRegisterRoute: AuthDriverRegisterRoute,
   AuthUserSigninRoute: AuthUserSigninRoute,

@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import DriverDashboard from '@/app/dashboard/driverDashboard'
 
-export const Route = createFileRoute('/driver/dashboard')({
+export const Route = createFileRoute('/rideio/driver/dashboard')({
   component: RouteComponent,
 })
 
