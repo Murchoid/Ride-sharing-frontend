@@ -18,11 +18,13 @@ export const useAuthStore = create<AuthState>()(
       accessToken: null,
       refreshToken: null,
       isVerified: false,  
-      setTokens: (tokens) => set({ 
+      setTokens: (tokens) => {
+        console.log("setting tokens ", tokens);
+        set({       
         accessToken: tokens.accessToken,
         refreshToken: tokens.refreshToken,
         isVerified: tokens.isVerified,
-      }),
+      })},
       clearTokens: () => set({ 
         accessToken: null, 
         refreshToken: null, 

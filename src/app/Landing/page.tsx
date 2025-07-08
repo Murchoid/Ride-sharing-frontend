@@ -7,10 +7,13 @@ import {
   BarChart3Icon,
 } from "lucide-react";
 import { FadeInSection } from "../../components/shared/FadeInSection";
+import Header from "@/components/shared/Header";
 
 
 export default function LandingPage() {
   return (
+    <>
+      <Header />
     <main className="min-h-screen bg-gradient-to-br from-primary via-white to-background text-foreground px-6 py-12 flex flex-col items-center justify-center">
       <section className="text-center max-w-2xl space-y-6">
         <h1 className="text-4xl md:text-5xl font-bold leading-tight">
@@ -208,5 +211,6 @@ export default function LandingPage() {
         <a href="https://storyset.com/technology">Technology illustrations by Storyset</a>
 
     </main>
+    </>
   );
 }

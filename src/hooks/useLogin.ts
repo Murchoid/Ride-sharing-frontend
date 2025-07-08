@@ -13,8 +13,9 @@ export function useLogin() {
     mutationFn: loginApi,
     onSuccess: (data) => {
       setTokens({
-        accessToken: data.accessToken,
-        refreshToken: data.refreshToken,
+        accessToken: data.access_token,
+        refreshToken: data.refresh_token,
+        isVerified: true
       });
       toast.success("Log in successful");
 

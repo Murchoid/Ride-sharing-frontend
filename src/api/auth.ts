@@ -9,8 +9,8 @@ export async function loginApi(data: LoginSchema) {
   });
 
   if (!res.ok) throw new Error("Login failed");
-
-  return res.json(); 
+  const resData = await res.json();
+  return resData.data; 
 }
 
 export async function registerApi(data: RegisterSchema) {
