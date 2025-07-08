@@ -1,7 +1,7 @@
-function customerDashboard(){
+export default function CustomerDashboard(){
     return(
-        <div>customer dash board</div>
+        <div>
+            customer dash board
+        </div>
     )
 }
-
-export default customerDashboard;
